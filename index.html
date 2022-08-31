@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+
+        }
+        .wrap{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .capha{
+            width: 300px;
+            height: 450px;  
+          
+      
+            box-shadow: 0 0 10px rgb(185, 185, 185);  
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          
+         }
+         .capha__top{
+            width: 100%;
+height: 20%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+background-color: rgb(94, 179, 248);
+color: white;
+padding: 8px 0;
+      }
+         .capha__top__text1{
+            font-weight: 400;
+            font-size: 22px;
+            text-align: center;
+         }
+         .capha__top__text2{
+            font-weight: 300;
+            font-size: 14px;
+            text-align: center;
+         }
+         .capha__top__text3{
+            color: #ff5050;
+            font-size: 24px;
+            font-weight: 600;
+         }
+         .capha__inp{
+            height: 10%;
+            background-color: rgb(44, 44, 44);
+            color: white;
+            width: 100%;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: flex;
+            padding: 5px;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 400;
+         }
+         .capha__numbers{
+            width: 100%;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center; 
+            padding: 0 20px;
+         }
+         .capha__numbers__row{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+         }
+         .capha__numbers__row__num{
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: rgb(44, 44, 44);
+            color: white;
+            user-select: none;
+            cursor: pointer;
+
+         }
+         .capha__numbers__row__num__ins{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            
+         }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="capha">
+          <div class="capha__top">
+            <div class="capha__top__text1">Доведи, що ти не робот</div>
+            <div class="capha__top__text2">Введи це число: </div>
+            <div class="capha__top__text3">1234 </div>
+          </div>  
+          <div class="capha__inp"></div>
+          <div class="capha__numbers">
+            <!-- <div class="capha__numbers__row">
+                <div class="capha__numbers__row__num capha__numbers__row__num1">
+                    <div class="capha__numbers__row__num__ins capha__numbers__row__num__ins1">1</div>
+                </div>
+                <div class="capha__numbers__row__num capha__numbers__row__num2"></div>
+                <div class="capha__numbers__row__num capha__numbers__row__num3"></div>
+            </div>
+            <div class="capha__numbers__row">
+                <div class="capha__numbers__row__num capha__numbers__row__num4"></div>
+                <div class="capha__numbers__row__num capha__numbers__row__num5"></div>
+                <div class="capha__numbers__row__num capha__numbers__row__num6"></div>
+            </div>
+            <div class="capha__numbers__row">
+                <div class="capha__numbers__row__num capha__numbers__row__num7"></div>
+                <div class="capha__numbers__row__num capha__numbers__row__num8"></div>
+                <div class="capha__numbers__row__num capha__numbers__row__num9"></div>
+            </div>
+           
+                <div class="capha__numbers__row__num capha__numbers__row__num10"></div>
+             -->
+          </div>
+        </div>
+    </div>
+    <script>
+        let userNumber=''
+        let generatedNumber;
+        let generatedArrOfNumb=[
+        ]
+        function newNumber(){
+            generatedNumber=Math.round(Math.random()*(9999 - 1000)+1000)
+            $('.capha__top__text3').html(generatedNumber)
+        }
+        function newBtns(){
+     
+            for(let b=0; b<=10; b++){
+                let tr=0;
+                let gen=Math.round(Math.random()*9)
+                for(let i=0 ; i<=generatedArrOfNumb.length; i++){
+    
+            
+            if(generatedArrOfNumb[i]==gen){
+                tr=1
+              
+            }
+           }
+           if(tr==0){
+            generatedArrOfNumb.push(gen)
+           }else if(generatedArrOfNumb.length<10){
+            b--
+          
+           }
+         
+            }
+           
+         
+            console.log(generatedArrOfNumb)
+        }
+        function newButOnTheScreen(){
+            console.log('b')
+            $('.capha__numbers').html(' <div class="capha__numbers__row"><div class="capha__numbers__row__num capha__numbers__row__num1"></div> <div class="capha__numbers__row__num capha__numbers__row__num2"></div><div class="capha__numbers__row__num capha__numbers__row__num3"></div></div><div class="capha__numbers__row"><div class="capha__numbers__row__num capha__numbers__row__num4"></div><div class="capha__numbers__row__num capha__numbers__row__num5"></div><div class="capha__numbers__row__num capha__numbers__row__num6"></div></div><div class="capha__numbers__row"><div class="capha__numbers__row__num capha__numbers__row__num7"></div><div class="capha__numbers__row__num capha__numbers__row__num8"></div><div class="capha__numbers__row__num capha__numbers__row__num9"></div></div> <div class="capha__numbers__row__num capha__numbers__row__num10"></div>')
+            for(let i=0;i<=10;i++){
+               console.log(generatedArrOfNumb[i])
+            //    $('.capha__numbers__row__num'+i).html('')
+          
+                $('.capha__numbers__row__num'+i).html('<div class="capha__numbers__row__num__ins capha__numbers__row__num__ins'+generatedArrOfNumb[i-1]+'">'+generatedArrOfNumb[i-1]+'</div>')
+            }
+            generatedArrOfNumb=[]
+        }
+        newNumber()
+        newBtns()
+        newButOnTheScreen()
+
+        $('.capha__numbers__row__num__ins1').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='1'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins2').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='2'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins3').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='3'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins4').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='4'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins5').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='5'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins6').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='6'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins7').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='7'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins8').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='8'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins9').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='9'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+        $('.capha__numbers__row__num__ins10').click(function(){
+        //     newBtns()
+        // newButOnTheScreen()
+           console.log('one')
+            userNumber+='0'
+            $('.capha__inp').html(userNumber)
+            if(userNumber.length>=4){
+                console.log(userNumber)
+                if(Number(userNumber)===generatedNumber){
+                    $('.capha').css('display','none')
+                    alert('Ти пройшов')
+                }else{
+                    $('.capha').css('display','none')
+                    alert('Ти не пройшов перезагрузи сторінку')
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
